@@ -52,19 +52,22 @@
     const codigo = document.getElementById("regCodigo").value.trim();
 
     if (nombre !== "" && codigo !== "") {
-        // 1. LIMPIAR CUALQUIER ROL VIEJO PARA EVITAR REDIRECCIONES FANTASMA
+        // 1. Limpiamos cualquier rastro de sesiones o roles antiguos
         localStorage.removeItem("tipoUsuario"); 
         
-        // También puedes usar localStorage.clear(); si quieres borrar TODO lo anterior antes de crear la cuenta
-
-        // 2. Guardamos los datos nuevos
+        // 2. Guardamos los datos del nuevo usuario
         localStorage.setItem("nombreUsuario", nombre);
         localStorage.setItem("codigoUsuario", codigo);
 
-        alert("✨ ¡Cuenta creada con éxito! Ahora inicia sesión con tu código.");
+      
+        // Creamos un correo ficticio con su código para que las otras pantallas lo reconozcan
+        const correoAuto = `${codigo.toLowerCase()}@nursecore.com`;
+        localStorage.setItem("usuarioLogueado", correoAuto);
 
-        // 3. Redirección forzada al Login
-        window.location.href = "login.html";
+        alert("✨ ¡Cuenta creada con éxito! Vamos a configurar tu perfil.");
+
+        // 4. Redirección directa a elegir el rol sin pasar por el Login pesado
+        window.location.href = "elegir-usuario.html";
     }
 }
     </script>
