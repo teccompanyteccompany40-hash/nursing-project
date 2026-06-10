@@ -3,80 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Paciente — NurseCore</title>
+    <title>Configurar Perfil Profesional - NurseCore</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-slate-100">
+<body class="bg-slate-50 font-sans text-slate-800 flex flex-col items-center justify-center min-h-screen p-4">
 
-    <div class="p-10">
+    <div class="max-w-md w-full bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+        <div class="text-center mb-8">
+            <div class="text-5xl mb-3">👩‍⚕️</div>
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight">Perfil Profesional</h1>
+            <p class="text-sm text-slate-400 font-medium mt-1">Completa tus datos de colegiatura para activar tu entorno clínico</p>
+        </div>
 
-        <div class="flex items-center gap-4 mb-8">
-            <button
-                onclick="history.back()"
-                class="bg-white px-5 py-3 rounded-2xl shadow hover:scale-105 transition text-slate-700 font-medium"
-            >
-                ← Regresar
+        <form id="formPerfilProf" onsubmit="guardarPerfilProfesional(event)" class="space-y-5">
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Especialidad Médica</label>
+                <input type="text" id="profEspecialidad" required 
+                       class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 bg-slate-50 text-sm font-medium transition-colors" 
+                       placeholder="Ej. Cuidados Intensivos, Pediatría">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Número de Colegiatura (CEP)</label>
+                <input type="text" id="profColegiatura" required 
+                       class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 bg-slate-50 text-sm font-medium transition-colors" 
+                       placeholder="Ej. CEP-74839">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Centro Hospitalario / Clínica</label>
+                <input type="text" id="profHospital" required 
+                       class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:border-teal-500 bg-slate-50 text-sm font-medium transition-colors" 
+                       placeholder="Ej. Hospital Central del Sur">
+            </div>
+
+            <button type="submit" class="w-full bg-[#2EC4B6] hover:bg-[#239c90] text-slate-950 font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all text-sm mt-6 flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                <span>Guardar y Continuar al Dashboard</span> →
             </button>
-            <span class="text-slate-400">Dashboard → Pacientes</span>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-xl p-10">
-
-            <div class="flex justify-between items-center mb-10">
-                <div>
-                    <h1 class="text-5xl font-bold text-slate-800">Juan Pérez</h1>
-                    <p class="text-slate-500 mt-2">Paciente Hospitalizado</p>
-                </div>
-                <div class="bg-blue-100 text-blue-700 px-6 py-3 rounded-2xl font-semibold">Activo</div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-8">
-
-                <div class="bg-slate-50 p-6 rounded-3xl">
-                    <h2 class="text-2xl font-bold mb-5">Información General</h2>
-                    <div class="space-y-4 text-slate-600">
-                        <p><strong>DNI:</strong> 74281934</p>
-                        <p><strong>Edad:</strong> 45 años</p>
-                        <p><strong>Sexo:</strong> Masculino</p>
-                        <p><strong>Historia Clínica:</strong> HC-2026-120</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 p-6 rounded-3xl">
-                    <h2 class="text-2xl font-bold mb-5">Diagnóstico</h2>
-                    <p class="text-slate-600 leading-7">
-                        Paciente con hipertensión arterial y control de glucosa.
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="mt-10">
-                <h2 class="text-3xl font-bold mb-6">Medicamentos</h2>
-                <div class="space-y-4">
-                    <div class="bg-slate-50 p-5 rounded-2xl flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-slate-800">Paracetamol</h3>
-                            <p class="text-slate-500">500mg</p>
-                        </div>
-                        <span class="text-green-600 font-semibold bg-green-50 px-4 py-2 rounded-xl">Administrado</span>
-                    </div>
-                    <div class="bg-slate-50 p-5 rounded-2xl flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-slate-800">Losartán</h3>
-                            <p class="text-slate-500">50mg</p>
-                        </div>
-                        <span class="text-yellow-600 font-semibold bg-yellow-50 px-4 py-2 rounded-xl">Pendiente</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        </form>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        if (!localStorage.getItem("usuarioLogueado") || localStorage.getItem("tipoUsuario") !== "profesional") {
+            window.location.href = "login.html";
+        }
+
+        function guardarPerfilProfesional(event) {
+            event.preventDefault();
+            
+            // Corrección aquí: Nombre de variable coherente
+            const especialidad = document.getElementById("profEspecialidad").value.trim();
+            const colegiatura = document.getElementById("profColegiatura").value.trim();
+            const hospital = document.getElementById("profHospital").value.trim();
+
+            localStorage.setItem("prof_especialidad", especialidad);
+            localStorage.setItem("prof_colegiatura", colegiatura);
+            localStorage.setItem("prof_hospital", hospital);
+            localStorage.setItem("perfilConfigurado", "true");
+
+            window.location.href = "dashboard-profesional.html";
+        }
+    </script>
 </body>
 </html>
