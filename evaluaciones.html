@@ -15,13 +15,18 @@
             <p class="text-xs text-emerald-700 mb-8 uppercase tracking-wide font-semibold">Panel Académico</p>
             <nav class="space-y-1">
                 <a href="dashboard-estudiante.html" class="sidebar-item-light hover:bg-white/20 rounded-xl transition block py-2.5 px-4 font-medium">🏠 Dashboard</a>
-                <a href="#" class="sidebar-item-light hover:bg-white/20 rounded-xl transition block py-2.5 px-4 font-medium">📚 Casos Clínicos</a>
+                
+                <a href="casos-clinicos.html" class="sidebar-item-light hover:bg-white/20 rounded-xl transition block py-2.5 px-4 font-medium">📚 Casos Clínicos</a>
+                
                 <a href="#" class="sidebar-item-light hover:bg-white/20 rounded-xl transition block py-2.5 px-4 font-medium">📝 Reg. de Prácticas</a>
                 
                 <div class="border-t border-emerald-900/10 my-4"></div>
                 
                 <a href="guias.html" class="sidebar-item-light hover:bg-white/20 rounded-xl transition block py-2.5 px-4 font-medium">📖 Guías</a>
+                
                 <a href="evaluaciones.html" class="block py-3 px-4 rounded-xl bg-white/40 font-bold active-item shadow-sm text-emerald-950">✅ Evaluaciones</a>
+                
+                <a href="perfil-estudiante.html" class="sidebar-item-light hover:bg-white/20 rounded-xl transition block py-2.5 px-4 font-medium mt-4">👤 Mi Perfil Académico</a>
                 
                 <a href="configuracion.html" class="sidebar-item-light bg-black/5 hover:bg-black/10 rounded-xl transition block py-2.5 px-4 mt-6 text-center font-bold text-xs">🎨 Ajustar Colores</a>
             </nav>
@@ -34,14 +39,14 @@
     <div class="flex-1 flex flex-col">
         <header id="topbar" class="h-20 bg-[#14532d] flex items-center justify-between px-8 text-white shadow-md transition-colors duration-300">
             <div>
-                <h1 class="text-2xl font-bold tracking-wide text-emerald-200">Mis Evaluaciones</h1>
-                <p class="text-sm text-emerald-300/80">Calificaciones y retroalimentación de simulaciones</p>
+                <h1 class="text-2xl font-bold tracking-wide text-emerald-200">Evaluaciones</h1>
+                <p class="text-sm text-emerald-300/80">Exámenes teóricos y controles de simulación</p>
             </div>
             <div class="flex items-center gap-4">
                 <span class="bg-emerald-500/20 text-emerald-300 text-xs px-4 py-2 rounded-full font-bold border border-emerald-500/30 flex items-center gap-1.5">
                     🎓 Estudiante
                 </span>
-                <a href="index.html" class="bg-rose-500/20 hover:bg-rose-500 text-rose-200 hover:text-white transition-all duration-200 text-xs font-bold px-4 py-2 rounded-xl border border-rose-500/30 flex items-center gap-1">
+                <a href="dashboard-estudiante.html" class="bg-rose-500/20 hover:bg-rose-500 text-rose-200 hover:text-white transition-all duration-200 text-xs font-bold px-4 py-2.5 rounded-xl border border-rose-500/30 flex items-center gap-1">
                     <span>Volver</span> →
                 </a>
             </div>
@@ -49,23 +54,16 @@
 
         <main class="p-8 space-y-6">
             <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                <h2 class="text-xl font-bold text-slate-800 mb-4">✅ Calificaciones Obtenidas</h2>
-                <p class="text-sm text-slate-500 mb-6">Aquí se listan tus puntuaciones automáticas calculadas por los simuladores clínicos.</p>
+                <h2 class="text-xl font-bold text-slate-800 mb-4">✅ Evaluaciones Disponibles</h2>
+                <p class="text-sm text-slate-500 mb-6">Revisa tus exámenes pendientes y tus calificaciones previas.</p>
                 
                 <div class="space-y-3">
-                    <div class="p-4 bg-slate-50 rounded-2xl flex justify-between items-center border border-slate-100">
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex justify-between items-center">
                         <div>
-                            <h4 class="font-bold text-slate-700">Simulación: Shock Anafiláctico</h4>
-                            <p class="text-xs text-slate-400">Completado hace 2 días</p>
+                            <h4 class="font-bold text-slate-700">📌 Examen Teórico Clínico N° 1</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Pendiente de ejecución autónoma.</p>
                         </div>
-                        <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-xl text-sm font-bold">95 / 100</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-2xl flex justify-between items-center border border-slate-100">
-                        <div>
-                            <h4 class="font-bold text-slate-700">Evaluación: Cálculo de Dosis Básica</h4>
-                            <p class="text-xs text-slate-400">Completado hace una semana</p>
-                        </div>
-                        <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-xl text-sm font-bold">88 / 100</span>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-lg">Pendiente</span>
                     </div>
                 </div>
             </div>
@@ -73,5 +71,10 @@
     </div>
 
     <script src="app.js"></script>
+    <script>
+        if (!localStorage.getItem("usuarioLogueado") || localStorage.getItem("tipoUsuario") !== "estudiante") {
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>
